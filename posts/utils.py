@@ -1,6 +1,6 @@
 from django.utils.timezone import now
 
-from tasks import publish_post
+from posts.tasks import publish_post
 
 
 def schedule_post_publish(post):
