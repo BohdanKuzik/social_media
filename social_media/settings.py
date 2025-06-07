@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
     "debug_toolbar",
@@ -133,3 +134,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 AUTH_USER_MODEL = "users.CustomUser"
+
+
+# Celery Configuration Options
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESUL_BACKEND = "redis://localhost:6379"
+CELERY_TIMEZONE = "Europe/Warsaw"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60

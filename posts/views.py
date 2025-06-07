@@ -63,7 +63,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
 
     def get_queryset(self):
-        self.queryset = Post.objects.prefetch_related("hashtags").select_related().all()
+        self.queryset = Post.objects.prefetch_related("hashtags").select_related().filter(published=True)
         return self.queryset
 
     def get_serializer_class(self):

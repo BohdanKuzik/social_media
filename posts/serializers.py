@@ -95,7 +95,6 @@ class PostSerializer(serializers.ModelSerializer):
         many=True,
         queryset=Hashtag.objects.all()
     )
-
     class Meta:
         model = Post
         fields = [
@@ -104,6 +103,7 @@ class PostSerializer(serializers.ModelSerializer):
             "image",
             "hashtags",
             "published",
+            "scheduled_time",
         ]
 
 class PostReadSerializer(serializers.ModelSerializer):
