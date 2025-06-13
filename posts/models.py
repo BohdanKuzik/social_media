@@ -34,6 +34,10 @@ class Post(models.Model):
     def like_count(self):
         return self.likes.count()
 
+    def publish(self):
+        self.published = True
+        self.save()
+
     def __str__(self):
         return self.content[:50]
 

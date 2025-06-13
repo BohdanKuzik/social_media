@@ -17,6 +17,7 @@ from posts.serializers import (
     LikeReadSerializer,
     CommentReadSerializer,
 )
+from posts.tasks import publish_scheduled_post
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -63,7 +64,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
 
     def get_queryset(self):
-        self.queryset = Post.objects.prefetch_related("hashtags").select_related().filter(published=True)
+        self.queryset = Post.objects.prefetch_related("hashtags").select_related().filter()
         return self.queryset
 
     def get_serializer_class(self):

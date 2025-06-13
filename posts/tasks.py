@@ -1,15 +1,17 @@
-from django.utils import timezone
 from celery import shared_task
+from django.utils import timezone
 
 from posts.models import Post
 
+print("tasks works 1")
+
 
 @shared_task
-def publish_post(post_id):
+def publish_scheduled_post(post_id):
     try:
-        post = Post.objects.get(id=post_id, is_published=False)
-        post.is_published = True
-        post.save()
-        return f"Post {post_id} published"
+        post = Post.objects.get(id=post_id)
+        if post.scheduled_time <= timezone.now():
+            post.publish()
     except Post.DoesNotExist:
-        return "Post does not exist."
+        return f"Post {post_id} does not exist"
+    print("tasks works 2")

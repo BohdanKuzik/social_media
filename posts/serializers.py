@@ -104,6 +104,7 @@ class PostSerializer(serializers.ModelSerializer):
             "hashtags",
             "scheduled_time",
         ]
+        read_only_fields = ["id", "published"]
 
 class PostReadSerializer(serializers.ModelSerializer):
     hashtags = HashtagSerializer(many=True)
